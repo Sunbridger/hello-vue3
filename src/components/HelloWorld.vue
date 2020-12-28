@@ -7,6 +7,14 @@
   import { defineComponent, computed, ref, unref, nextTick } from 'vue';
 
 
+
+
+enum Gender {
+   pass = 'pass-icon',
+   fail = 'fail-icon',
+   pending = 'pending-icon'
+}
+
   export default defineComponent({
     name: 'AButton',
     inheritAttrs: false,
@@ -39,6 +47,8 @@
       },
     },
     setup(props, ctx) {
+        console.log(Gender.pass);
+
         type Record<K extends string | number | symbol, T extends string | number> = { [x in K]: T; }
 
         const map: Record<string, string> = {

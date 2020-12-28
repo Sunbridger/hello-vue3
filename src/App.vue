@@ -25,17 +25,20 @@
     <NormalJSX name="proooo" :age="12" />
     <!-- <Alwa title="男男女女女" />
     <Hacker /> -->
+    {{name}}
+    {{page}}
 </template>
 
 <script>
 
-import { ref, reactive, getCurrentInstance } from 'vue';
+import { ref, reactive, computed, getCurrentInstance } from 'vue';
 
 import HelloWorld from './components/HelloWorld.vue';
 import Hacker from './components/hacker.vue';
 import Button from './components/base-jsx';
 import NormalJSX from './components/normal-jsx-prop';
 import Alwa from './components/always-jsx';
+
 
 export default {
   name: 'App',
@@ -48,11 +51,23 @@ export default {
   },
   setup() {
       const msg = ref('Hello Vue 3.0 + Vite');
+      const obj = reactive({
+          name: 'xxx'
+      });
+      console.log(msg, obj, '---msg');
       setTimeout(() => {
           msg.value = '改变了';
-      }, 1500);
+      }, 2000);
+      const page = reactive({
+        title: "Hello, World!",
+        description: "",
+        content: "Hello world",
+        wordCount: computed(() => page.content.length)
+      });
       return {
-          msg
+          msg,
+          ...obj,
+          page
       }
   },
   methods: {
